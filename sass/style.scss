@@ -1,0 +1,84 @@
+body {
+  background: #000000 url(../images/bg.jpg) no-repeat 50% 50% / auto 100%;
+  background-attachment: fixed;
+
+  font-size: 16px;
+  line-height: 1.8;
+  margin: 0;
+  padding: 0;
+}
+.bg-mask {
+  background: rgba(0,0,0,0.5);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 0;
+}
+.block-twitch-app {
+  padding: 50px 0;
+  margin: auto;
+  width: 80%;
+  position: relative;
+  z-index: 100;
+  .channel-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    .channel-item {
+      display: inline-block;
+      vertical-align: top;
+      margin: 0 -4px 30px 3%;
+      width: 30%;
+      background: #fff;
+      transition: ease 0.3s;
+      cursor: pointer;
+      &:hover {
+        box-shadow: 0 0 30px rgba(0,0,0,0.8);
+        .thumb-channel{
+          -webkit-filter: brightness(130%);
+          filter: brightness(130%);
+        }
+      }
+      .thumb-channel {
+        transition: 0.3s;
+        img {
+          display: block;
+          height: auto;
+          width: 100%;
+        }
+      }
+      .info-channel {
+
+        .author-info {
+          float: left;
+          width: 60px;
+          padding: 10px;
+          box-sizing: border-box;
+          img {
+            display: block;
+            height: auto;
+            width: 100%;
+            border-radius: 50%;
+          }
+        }
+        .title-info {
+          float: right;
+          width: calc(100% - 60px);
+          padding: 10px;
+          box-sizing: border-box;
+          .title-info-text {
+            a {
+              color: #64439a;
+              &:hover {
+                color: #333;
+              }
+            }
+          }
+          .author-info-text {}
+        }
+      }
+    }
+  }
+}
