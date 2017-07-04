@@ -34,6 +34,12 @@ body {
       background: #fff;
       transition: ease 0.3s;
       cursor: pointer;
+      a {
+        color: #64439a;
+        &:hover {
+          color: #333;
+        }
+      }
       &:hover {
         box-shadow: 0 0 30px rgba(0,0,0,0.8);
         .thumb-channel{
@@ -69,14 +75,16 @@ body {
           padding: 10px;
           box-sizing: border-box;
           .title-info-text {
-            a {
-              color: #64439a;
-              &:hover {
-                color: #333;
-              }
-            }
+            display: block;
+            max-height: 1.8em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 20px;
           }
-          .author-info-text {}
+          .author-info-text {
+            color: #888;
+          }
         }
       }
     }

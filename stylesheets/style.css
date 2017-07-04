@@ -44,50 +44,63 @@ body {
   cursor: pointer;
 }
 /* line 37, ../sass/style.scss */
+.block-twitch-app .channel-list .channel-item a {
+  color: #64439a;
+}
+/* line 39, ../sass/style.scss */
+.block-twitch-app .channel-list .channel-item a:hover {
+  color: #333;
+}
+/* line 43, ../sass/style.scss */
 .block-twitch-app .channel-list .channel-item:hover {
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
 }
-/* line 39, ../sass/style.scss */
+/* line 45, ../sass/style.scss */
 .block-twitch-app .channel-list .channel-item:hover .thumb-channel {
   -webkit-filter: brightness(130%);
   filter: brightness(130%);
 }
-/* line 44, ../sass/style.scss */
+/* line 50, ../sass/style.scss */
 .block-twitch-app .channel-list .channel-item .thumb-channel {
   transition: 0.3s;
 }
-/* line 46, ../sass/style.scss */
+/* line 52, ../sass/style.scss */
 .block-twitch-app .channel-list .channel-item .thumb-channel img {
   display: block;
   height: auto;
   width: 100%;
 }
-/* line 54, ../sass/style.scss */
+/* line 60, ../sass/style.scss */
 .block-twitch-app .channel-list .channel-item .info-channel .author-info {
   float: left;
   width: 60px;
   padding: 10px;
   box-sizing: border-box;
 }
-/* line 59, ../sass/style.scss */
+/* line 65, ../sass/style.scss */
 .block-twitch-app .channel-list .channel-item .info-channel .author-info img {
   display: block;
   height: auto;
   width: 100%;
   border-radius: 50%;
 }
-/* line 66, ../sass/style.scss */
+/* line 72, ../sass/style.scss */
 .block-twitch-app .channel-list .channel-item .info-channel .title-info {
   float: right;
   width: calc(100% - 60px);
   padding: 10px;
   box-sizing: border-box;
 }
-/* line 72, ../sass/style.scss */
-.block-twitch-app .channel-list .channel-item .info-channel .title-info .title-info-text a {
-  color: #64439a;
+/* line 77, ../sass/style.scss */
+.block-twitch-app .channel-list .channel-item .info-channel .title-info .title-info-text {
+  display: block;
+  max-height: 1.8em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 20px;
 }
-/* line 74, ../sass/style.scss */
-.block-twitch-app .channel-list .channel-item .info-channel .title-info .title-info-text a:hover {
-  color: #333;
+/* line 85, ../sass/style.scss */
+.block-twitch-app .channel-list .channel-item .info-channel .title-info .author-info-text {
+  color: #888;
 }
