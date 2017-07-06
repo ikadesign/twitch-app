@@ -4,7 +4,7 @@ var isLoading;
 function getData(test) {
   var clientId = 'q76w73hhqbti678iemb94j43sro4kh';
   var limit = 15;
-  channelOffset +=9;
+  channelOffset +=15;
   isLoading = true;
   $('.loading').show();
   $.ajax({
