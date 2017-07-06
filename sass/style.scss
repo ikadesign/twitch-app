@@ -48,25 +48,39 @@ body {
         }
       }
       .thumb-channel {
+        background: #64439a url(../images/twitch.jpg) no-repeat 50% 0 / auto 100%;
+        height: calc(100vw * 0.133);
         transition: 0.3s;
+        overflow: hidden;
         img {
           display: block;
           height: auto;
           width: 100%;
+          opacity: 0;
+          transition: 0.3s;
         }
       }
       .info-channel {
 
         .author-info {
           float: left;
-          width: 60px;
-          padding: 10px;
+          width: 40px;
+          margin: 10px;
           box-sizing: border-box;
+          background: #ddd url(../images/author.png) no-repeat 50% 0/auto 100%;
+          border-radius: 50%;
+          overflow: hidden;
+          border: 3px solid #64439a;
+          height: 40px;
           img {
             display: block;
             height: auto;
             width: 100%;
-            border-radius: 50%;
+            opacity: 0;
+            transition: 0.3s;
+            &[src="null"] {
+              display: none !important;
+            }
           }
         }
         .title-info {
@@ -85,6 +99,39 @@ body {
           .author-info-text {
             color: #888;
           }
+        }
+      }
+    }
+  }
+  .loading {
+    font-size: 16px;
+    padding: 20px 0;
+    color: #fff;
+    text-align: center;
+    opacity: 0.5;
+    display: none;
+  }
+}
+@media screen and (max-width: 768px) {
+  .block-twitch-app {
+    .channel-list {
+      .channel-item {
+        width: 47%;
+        .thumb-channel {
+          height: calc(100vw * 0.205);
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  .block-twitch-app {
+    .channel-list {
+      .channel-item {
+        width: 100%;
+        margin: 0 0 30px;
+        .thumb-channel {
+          height: calc(100vw * 0.435);
         }
       }
     }

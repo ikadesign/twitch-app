@@ -1,9 +1,14 @@
+var channelOffset = 0;
+var isLoading;
+
 function getData(test) {
   var clientId = 'q76w73hhqbti678iemb94j43sro4kh';
-  var limit = 21;
-
+  var limit = 15;
+  channelOffset +=9;
+  isLoading = true;
+  $('.loading').show();
   $.ajax({
-    url: 'https://api.twitch.tv/kraken/streams/?client_id=' + clientId + '&game=Overwatch' + '&limit=' + limit,
+    url: 'https://api.twitch.tv/kraken/streams/?client_id=' + clientId + '&game=Overwatch' + '&limit=' + limit + '&offset='+ channelOffset,
     
     error: function(err) {
       console.log("Error!");
@@ -17,11 +22,11 @@ function getData(test) {
             <li class="channel-item">
               <a href="${response.streams[i].channel.url}" target="_blank" title="Check Now!">
                 <div class="thumb-channel">
-                  <img src="${response.streams[i].preview.medium}" alt="channel-thumb">
+                  <img src="${response.streams[i].preview.medium}" alt="channel-thumb" onload="this.style.opacity=1" />
                 </div>
                 <div class="info-channel">
                   <div class="author-info">
-                    <img src="${response.streams[i].channel.logo}" alt="author-thumb">
+                    <img src="${response.streams[i].channel.logo}" alt="author-thumb" onload="this.style.opacity=1" />
                   </div>
                   <div class="title-info">
                     <span class="title-info-text">
@@ -36,12 +41,23 @@ function getData(test) {
             </li>
           `;
           chlist.append(itemData);
+          isLoading = false;
+          $('.loading').fadeOut();
         }
       }());
     }
   })
 }
-getData();
+$(document).ready(function(){
+  getData();
+  $(window).scroll(function(){
+    if ($(window).scrollTop() + $(window).height() >= $(document).height() - 200) {
+      if ( isLoading == false ) {
+        getData();
+      }
+    }
+  })
+})
 
 /*
 function getData (cb) {
