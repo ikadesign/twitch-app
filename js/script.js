@@ -1,64 +1,100 @@
 var channelOffset = 0;
 var isLoading;
+const clientId = 'q76w73hhqbti678iemb94j43sro4kh';
+const limit = 15;
+var gameType = 'Overwatch';
 
-function getData(test) {
-  var clientId = 'q76w73hhqbti678iemb94j43sro4kh';
-  var limit = 15;
+function getData() {
   channelOffset +=15;
   isLoading = true;
-  $('.loading').show();
-  $.ajax({
-    url: 'https://api.twitch.tv/kraken/streams/?client_id=' + clientId + '&game=Overwatch' + '&limit=' + limit + '&offset='+ channelOffset,
-    
-    error: function(err) {
-      console.log("Error!");
-    },
-    success: function(response) {
-      console.log(response);
-      (function() {
-        var chlist = $('.channel-list');
-        for (var i = 0; i<response.streams.length;i++) {
-          var itemData = `
-            <li class="channel-item">
-              <a href="${response.streams[i].channel.url}" target="_blank" title="Check Now!">
-                <div class="thumb-channel">
-                  <img src="${response.streams[i].preview.medium}" alt="channel-thumb" onload="this.style.opacity=1" />
-                </div>
-                <div class="info-channel">
-                  <div class="author-info">
-                    <img src="${response.streams[i].channel.logo}" alt="author-thumb" onload="this.style.opacity=1" />
-                  </div>
-                  <div class="title-info">
-                    <span class="title-info-text">
-                      ${response.streams[i].channel.status}
-                    </span>
-                    <div class="author-info-text">
-                      ${response.streams[i].channel.display_name}
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-          `;
-          chlist.append(itemData);
-          isLoading = false;
-          $('.loading').fadeOut();
-        }
-      }());
+  document.querySelector('.loading').style.display = 'block';
+  var streamReq = new XMLHttpRequest();
+  var url = `https://api.twitch.tv/kraken/streams/?client_id=${clientId}&game=${gameType}&offset=${channelOffset}&limit=${limit}`;
+  streamReq.open("GET",url,true);
+  streamReq.onload = function() {
+    // console.log(streamReq.status);
+    if (streamReq.status >= 200 && streamReq.status < 400) {
+      var streamData = JSON.parse(streamReq.responseText);
+      str(streamData);
     }
-  })
+  }
+  streamReq.send();
+
+  function str(data) {
+    console.log(data);
+    let container = document.querySelector('.channel-list');
+    for (let dataOut of data.streams) {
+      var itemData = `
+        <li class="channel-item">
+          <a href="${dataOut.channel.url}" target="_blank" title="Check Now!">
+            <div class="thumb-channel">
+              <img src="${dataOut.preview.medium}" alt="channel-thumb" onload="this.style.opacity=1" />
+            </div>
+            <div class="info-channel">
+              <div class="author-info">
+                <img src="${dataOut.channel.logo}" alt="author-thumb" onload="this.style.opacity=1" />
+              </div>
+              <div class="title-info">
+                <span class="title-info-text">
+                  ${dataOut.channel.status}
+                </span>
+                <div class="author-info-text">
+                  ${dataOut.channel.display_name}
+                </div>
+                <div class="viewer-info-text">
+                  Viewers: ${dataOut.viewers}
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>
+      `;
+      const div = document.createElement('div');
+      container.appendChild(div);
+      div.outerHTML = itemData;
+    }
+    isLoading = false;
+    document.querySelector('.loading').style.display = 'none';
+  }
 }
-$(document).ready(function(){
+
+document.addEventListener("DOMContentLoaded", function() {
   getData();
-  $(window).scroll(function(){
-    if ($(window).scrollTop() + $(window).height() >= $(document).height() - 200) {
-      if ( isLoading == false ) {
-        getData();
-      }
-    }
-  })
 })
 
+getScrollXY = function() {
+    var scrOfX = 0,
+        scrOfY = 0;
+
+    if (typeof(window.pageYOffset) == 'number') {
+        //Netscape compliant
+        scrOfY = window.pageYOffset;
+        scrOfX = window.pageXOffset;
+    } else if (document.body && (document.body.scrollLeft || document.body.scrollTop)) {
+        //DOM compliant
+        scrOfY = document.body.scrollTop;
+        scrOfX = document.body.scrollLeft;
+    } else if (document.documentElement && (document.documentElement.scrollLeft || document.documentElement.scrollTop)) {
+        //IE6 standards compliant mode
+        scrOfY = document.documentElement.scrollTop;
+        scrOfX = document.documentElement.scrollLeft;
+    }
+    return [scrOfX, scrOfY];
+};
+getDocHeight = function() {
+    var D = document;
+    return Math.max(
+        D.body.scrollHeight, D.documentElement.scrollHeight,
+        D.body.offsetHeight, D.documentElement.offsetHeight,
+        D.body.clientHeight, D.documentElement.clientHeight
+    );
+};
+// scroll code
+window.addEventListener("scroll", function() {
+  if (getDocHeight() <= getScrollXY()[1] + window.innerHeight) {
+    getData();
+  }
+})
 /*
 function getData (cb) {
   const clientId = 'q76w73hhqbti678iemb94j43sro4kh';
