@@ -6,6 +6,7 @@ a twitch api practice app
 #placeholder <br>
 
 #jQuery <br>
+#es6 <br>
 #API <br>
 #ajax <br>
 #infinite scroll <br>
