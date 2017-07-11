@@ -21,7 +21,7 @@ function getData() {
   streamReq.send();
 
   function str(data) {
-    console.log(data);
+    // console.log(data);
     let container = document.querySelector('.channel-list');
     for (let dataOut of data.streams) {
       var itemData = `
