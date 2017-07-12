@@ -10,7 +10,6 @@ function getData(lang) {
   if (lang === undefined ) {
     lang = 'en';
   }
-  channelOffset +=15;
   isLoading = true;
   document.querySelector('.loading').style.display = 'block';
   var streamReq = new XMLHttpRequest();
@@ -75,12 +74,14 @@ function getData(lang) {
 
 document.addEventListener("DOMContentLoaded", function() {
   getData(LANG);
+  channelOffset +=15;
 })
 
 window.addEventListener("scroll", function() {
   if (document.body.scrollTop+ window.innerHeight > document.documentElement.scrollHeight - 200) {
     if (!isLoading && isEnd == false) {
       getData(LANG);
+      channelOffset +=15;
     }
   }
 })
@@ -91,6 +92,7 @@ function changeLang(lang) {
   isEnd = false;
   $('.channel-list > *').remove();
   getData(LANG);
+  channelOffset +=15;
   $('.page-title').text(window.I18N[lang].title);
   $('.viewer-title').text(window.I18N[lang].viewer_title);
 }
