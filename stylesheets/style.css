@@ -28,12 +28,32 @@ body {
   z-index: 100;
 }
 /* line 25, ../sass/style.scss */
+.block-twitch-app .page-title {
+  color: #fff;
+  font-size: 36px;
+  text-align: center;
+  margin: 20px 0;
+}
+/* line 31, ../sass/style.scss */
+.block-twitch-app .box-lang-switch {
+  text-align: center;
+  margin: 0 0 20px;
+}
+/* line 34, ../sass/style.scss */
+.block-twitch-app .box-lang-switch a {
+  cursor: pointer;
+  display: inline-block;
+  color: #fff;
+  font-size: 20px;
+  padding: 0 10px;
+}
+/* line 42, ../sass/style.scss */
 .block-twitch-app .channel-list {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-/* line 29, ../sass/style.scss */
+/* line 46, ../sass/style.scss */
 .block-twitch-app .channel-list .channel-item {
   display: inline-block;
   vertical-align: top;
@@ -43,31 +63,31 @@ body {
   transition: ease 0.3s;
   cursor: pointer;
 }
-/* line 37, ../sass/style.scss */
+/* line 54, ../sass/style.scss */
 .block-twitch-app .channel-list .channel-item a {
   color: #64439a;
 }
-/* line 39, ../sass/style.scss */
+/* line 56, ../sass/style.scss */
 .block-twitch-app .channel-list .channel-item a:hover {
   color: #333;
 }
-/* line 43, ../sass/style.scss */
+/* line 60, ../sass/style.scss */
 .block-twitch-app .channel-list .channel-item:hover {
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
 }
-/* line 45, ../sass/style.scss */
+/* line 62, ../sass/style.scss */
 .block-twitch-app .channel-list .channel-item:hover .thumb-channel {
   -webkit-filter: brightness(130%);
   filter: brightness(130%);
 }
-/* line 50, ../sass/style.scss */
+/* line 67, ../sass/style.scss */
 .block-twitch-app .channel-list .channel-item .thumb-channel {
   background: #64439a url(../images/twitch.jpg) no-repeat 50% 0/auto 100%;
   height: calc(100vw * 0.133);
   transition: 0.3s;
   overflow: hidden;
 }
-/* line 55, ../sass/style.scss */
+/* line 72, ../sass/style.scss */
 .block-twitch-app .channel-list .channel-item .thumb-channel img {
   display: block;
   height: auto;
@@ -75,7 +95,7 @@ body {
   opacity: 0;
   transition: 0.3s;
 }
-/* line 65, ../sass/style.scss */
+/* line 82, ../sass/style.scss */
 .block-twitch-app .channel-list .channel-item .info-channel .author-info {
   float: left;
   width: 40px;
@@ -87,7 +107,7 @@ body {
   border: 3px solid #64439a;
   height: 40px;
 }
-/* line 75, ../sass/style.scss */
+/* line 92, ../sass/style.scss */
 .block-twitch-app .channel-list .channel-item .info-channel .author-info img {
   display: block;
   height: auto;
@@ -95,18 +115,18 @@ body {
   opacity: 0;
   transition: 0.3s;
 }
-/* line 81, ../sass/style.scss */
+/* line 98, ../sass/style.scss */
 .block-twitch-app .channel-list .channel-item .info-channel .author-info img[src="null"] {
   display: none !important;
 }
-/* line 86, ../sass/style.scss */
+/* line 103, ../sass/style.scss */
 .block-twitch-app .channel-list .channel-item .info-channel .title-info {
   float: right;
   width: calc(100% - 60px);
   padding: 10px;
   box-sizing: border-box;
 }
-/* line 91, ../sass/style.scss */
+/* line 108, ../sass/style.scss */
 .block-twitch-app .channel-list .channel-item .info-channel .title-info .title-info-text {
   display: block;
   max-height: 1.8em;
@@ -115,11 +135,11 @@ body {
   white-space: nowrap;
   font-size: 20px;
 }
-/* line 99, ../sass/style.scss */
+/* line 116, ../sass/style.scss */
 .block-twitch-app .channel-list .channel-item .info-channel .title-info .author-info-text {
   color: #888;
 }
-/* line 106, ../sass/style.scss */
+/* line 123, ../sass/style.scss */
 .block-twitch-app .loading {
   font-size: 16px;
   padding: 20px 0;
@@ -130,22 +150,22 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-  /* line 118, ../sass/style.scss */
+  /* line 135, ../sass/style.scss */
   .block-twitch-app .channel-list .channel-item {
     width: 47%;
   }
-  /* line 120, ../sass/style.scss */
+  /* line 137, ../sass/style.scss */
   .block-twitch-app .channel-list .channel-item .thumb-channel {
     height: calc(100vw * 0.205);
   }
 }
 @media screen and (max-width: 480px) {
-  /* line 130, ../sass/style.scss */
+  /* line 147, ../sass/style.scss */
   .block-twitch-app .channel-list .channel-item {
     width: 100%;
     margin: 0 0 30px;
   }
-  /* line 133, ../sass/style.scss */
+  /* line 150, ../sass/style.scss */
   .block-twitch-app .channel-list .channel-item .thumb-channel {
     height: calc(100vw * 0.435);
   }

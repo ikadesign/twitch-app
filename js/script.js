@@ -3,13 +3,18 @@ var isLoading;
 const clientId = 'q76w73hhqbti678iemb94j43sro4kh';
 const limit = 15;
 var gameType = 'Overwatch';
+var LANG;
+var isEnd = false;
 
-function getData() {
+function getData(lang) {
+  if (lang === undefined ) {
+    lang = 'en';
+  }
   channelOffset +=15;
   isLoading = true;
   document.querySelector('.loading').style.display = 'block';
   var streamReq = new XMLHttpRequest();
-  var url = `https://api.twitch.tv/kraken/streams/?client_id=${clientId}&game=${gameType}&offset=${channelOffset}&limit=${limit}`;
+  var url = `https://api.twitch.tv/kraken/streams/?client_id=${clientId}&game=${gameType}&offset=${channelOffset}&limit=${limit}&language=${lang}`;
   streamReq.open("GET",url,true);
   streamReq.onload = function() {
     // console.log(streamReq.status);
@@ -23,7 +28,16 @@ function getData() {
   function str(data) {
     // console.log(data);
     let container = document.querySelector('.channel-list');
+    if (data.streams.length == 0) {
+      isEnd = true;
+      console.log('end of streams');
+    }
     for (let dataOut of data.streams) {
+      if (dataOut.channel.logo == null) {
+        authorImg = "images/author.png";
+      }else {
+        authorImg = dataOut.channel.logo;
+      }
       var itemData = `
         <li class="channel-item">
           <a href="${dataOut.channel.url}" target="_blank" title="Check Now!">
@@ -32,7 +46,7 @@ function getData() {
             </div>
             <div class="info-channel">
               <div class="author-info">
-                <img src="${dataOut.channel.logo}" alt="author-thumb" onload="this.style.opacity=1" />
+                <img src="${authorImg}" alt="author-thumb" onload="this.style.opacity=1" />
               </div>
               <div class="title-info">
                 <span class="title-info-text">
@@ -42,7 +56,7 @@ function getData() {
                   ${dataOut.channel.display_name}
                 </div>
                 <div class="viewer-info-text">
-                  Viewers: ${dataOut.viewers}
+                  <span class="viewer-title"></span>: ${dataOut.viewers}
                 </div>
               </div>
             </div>
@@ -52,6 +66,7 @@ function getData() {
       const div = document.createElement('div');
       container.appendChild(div);
       div.outerHTML = itemData;
+      $('.viewer-title').text(window.I18N[lang].viewer_title);
     }
     isLoading = false;
     document.querySelector('.loading').style.display = 'none';
@@ -59,11 +74,23 @@ function getData() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  getData();
+  getData(LANG);
 })
 
 window.addEventListener("scroll", function() {
   if (document.body.scrollTop+ window.innerHeight > document.documentElement.scrollHeight - 200) {
-    getData();
+    if (!isLoading && isEnd == false) {
+      getData(LANG);
+    }
   }
 })
+
+function changeLang(lang) {
+  LANG = lang;
+  channelOffset = 0;
+  isEnd = false;
+  $('.channel-list > *').remove();
+  getData(LANG);
+  $('.page-title').text(window.I18N[lang].title);
+  $('.viewer-title').text(window.I18N[lang].viewer_title);
+}
