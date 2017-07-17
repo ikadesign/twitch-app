@@ -10,3 +10,4 @@ a twitch api practice app
 #API <br>
 #ajax <br>
 #infinite scroll <br>
+#i18n <br>

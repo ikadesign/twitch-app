@@ -7,16 +7,21 @@ var LANG;
 var isEnd = false;
 
 function getData(lang) {
-  if (lang === undefined ) {
+  //預設語言
+  if (lang === undefined ) { 
     lang = 'en';
   }
-  isLoading = true;
+  //標記讀取中
+  isLoading = true; 
   document.querySelector('.loading').style.display = 'block';
+  console.log('loading content');
+
+  //ajax
   var streamReq = new XMLHttpRequest();
   var url = `https://api.twitch.tv/kraken/streams/?client_id=${clientId}&game=${gameType}&offset=${channelOffset}&limit=${limit}&language=${lang}`;
   streamReq.open("GET",url,true);
   streamReq.onload = function() {
-    // console.log(streamReq.status);
+    console.log(streamReq.status);
     if (streamReq.status >= 200 && streamReq.status < 400) {
       var streamData = JSON.parse(streamReq.responseText);
       str(streamData);
@@ -25,7 +30,7 @@ function getData(lang) {
   streamReq.send();
 
   function str(data) {
-    // console.log(data);
+    console.log(data);
     let container = document.querySelector('.channel-list');
     if (data.streams.length == 0) {
       isEnd = true;
@@ -67,8 +72,10 @@ function getData(lang) {
       div.outerHTML = itemData;
       $('.viewer-title').text(window.I18N[lang].viewer_title);
     }
-    isLoading = false;
+    //標記讀取完畢
+    isLoading = false; 
     document.querySelector('.loading').style.display = 'none';
+    console.log('content loaded');
   }
 }
 
